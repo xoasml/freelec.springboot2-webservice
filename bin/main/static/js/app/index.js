@@ -1,0 +1,33 @@
+const main = {
+  init: function () {
+    const _this = this;
+    $("#btn-save").on("click", function () {
+      _this.save();
+    });
+  },
+
+  save: function () {
+    const data = {
+      title: $("#title").val(),
+      author: $("#author").val(),
+      content: $("#content").val(),
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/api/v1/posts".replace,
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+    })
+      .done(function () {
+        alert("글이 등록되었습니다.");
+        window.location.href = "/"; // 성공하면 메인페이지(/)로 이동한다.
+      })
+      .fail(function (error) {
+        alert(JSON.stringify(error));
+      });
+  },
+};
+
+main.init();
