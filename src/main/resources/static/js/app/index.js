@@ -4,6 +4,10 @@ const main = {
     $("#btn-save").on("click", function () {
       _this.save();
     });
+
+    $("#btn-update").on("click", function () {
+      _this.update();
+    });
   },
 
   save: function () {
@@ -23,6 +27,30 @@ const main = {
       .done(function () {
         alert("글이 등록되었습니다.");
         window.location.href = "/"; // 성공하면 메인페이지(/)로 이동한다.
+      })
+      .fail(function (error) {
+        alert(JSON.stringify(error));
+      });
+  },
+
+  update: function () {
+    const data = {
+      title: $("#title").val(),
+      content: $("#content").val(),
+    };
+
+    const id = $("#id").val();
+
+    $.ajax({
+      type: "PUT",
+      url: "/api/v1/posts/" + id,
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(data),
+    })
+      .done(function () {
+        alert("글이 수정되었습니다.");
+        window.location.href = "/";
       })
       .fail(function (error) {
         alert(JSON.stringify(error));
