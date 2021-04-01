@@ -8,6 +8,10 @@ const main = {
     $("#btn-update").on("click", function () {
       _this.update();
     });
+
+    $("#btn-delete").on("click", function () {
+      _this.delete();
+    });
   },
 
   save: function () {
@@ -50,6 +54,24 @@ const main = {
     })
       .done(function () {
         alert("글이 수정되었습니다.");
+        window.location.href = "/";
+      })
+      .fail(function (error) {
+        alert(JSON.stringify(error));
+      });
+  },
+
+  delete: function () {
+    const id = $("#id").val();
+
+    $.ajax({
+      type: "DELETE",
+      url: "/api/v1/posts/" + id,
+      dataType: "json",
+      contentType: "appplication/json; charset=uft-8",
+    })
+      .done(function () {
+        alert("글이 삭제되었습니다.");
         window.location.href = "/";
       })
       .fail(function (error) {
