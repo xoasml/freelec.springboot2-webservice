@@ -28,14 +28,21 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
 
-    compile('org.projectlombok:lombok')
+        compile('org.projectlombok:lombok')
 
+    // 데이터베이스(no sql)
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
 
+    // 머스테치 : 화면 분할
     compile('org.springframework.boot:spring-boot-starter-mustache')
 
+    // 테스트용 데이터 베이스
     compile('com.h2database:h2')
 
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+
 
 }

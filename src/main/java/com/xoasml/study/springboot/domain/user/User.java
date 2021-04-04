@@ -1,6 +1,7 @@
 package com.xoasml.study.springboot.domain.user;
 
 import com.xoasml.study.springboot.domain.BaseTimeEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -29,5 +30,24 @@ public class User extends BaseTimeEntity {
     //todo : Role Enum 만들기.
     private Role role;
 
-    //todo 177페이지 부터 이어서 작성하기.
+    @Builder
+
+    public User(Long id, String name, String email, String picture, Role role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+        this.role = role;
+    }
+
+    public User update(String name, String picture) {
+        this.name = name;
+        this.picture = picture;
+
+        return this;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();
+    }
 }
